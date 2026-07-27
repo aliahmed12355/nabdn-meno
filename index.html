@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم وكافيه نبض | Nabd Cafe Menu</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0f12;
+            --card-bg: #131b1e;
+            --accent-teal: #00b4d8;
+            --text-main: #f0f4f5;
+            --text-muted: #8d9d9f;
+            --border-color: #1f2b30;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding-bottom: 90px;
+            direction: rtl;
+        }
+
+        /* Header / Logo */
+        .header {
+            text-align: center;
+            padding: 35px 20px 20px;
+            background: linear-gradient(180deg, rgba(0, 180, 216, 0.15) 0%, rgba(10, 15, 18, 1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 180, 216, 0.1);
+            border: 2px solid var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 2rem;
+            color: var(--accent-teal);
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+        }
+
+        .logo-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Accordion Category Item */
+        .category-item {
+            margin-bottom: 12px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .category-btn {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: none;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .category-btn:active {
+            background-color: rgba(0, 180, 216, 0.08);
+        }
+
+        .category-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arrow {
+            color: var(--accent-teal);
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Accordion Content */
+        .items-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-out;
+            padding: 0 15px;
+        }
+
+        .category-item.active .items-list {
+            padding: 10px 15px 15px;
+        }
+
+        /* Item Card */
+        .item-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+            gap: 12px;
+        }
+
+        .item-card:last-child {
+            border-bottom: none;
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .item-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            background: #1a2428;
+            flex-shrink: 0;
+        }
+
+        .item-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Price Badge */
+        .price-badge {
+            background: rgba(0, 180, 216, 0.12);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            color: var(--accent-teal);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Fixed Delivery Footer */
+        .footer-delivery {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0d1316;
+            border-top: 1px solid var(--border-color);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+        }
+
+        .delivery-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-teal);
+            color: #000;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .whatsapp-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .delivery-btn:active {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Logo Area -->
+    <header class="header">
+        <div class="logo-icon">🫀</div>
+        <h1 class="logo-title">مطعم وكافيه نبض</h1>
+        <p class="subtitle">أجواء راقية • نكهات مميزة</p>
+    </header>
+
+    <!-- Main Menu Sections Container -->
+    <main class="container">
+
+        <!-- 1. مشروبات القهوة الساخنة -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>☕</span>
+                    <span>مشروبات القهوة الساخنة</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="قهوة تركيه" class="item-img"><div class="item-title">قهوة تركيه</div></div><div class="price-badge">2,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=150&q=80" alt="اسبريسو سنجل" class="item-img"><div class="item-title">اسبريسو سنجل</div></div><div class="price-badge">2,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=150&q=80" alt="اسبريسو دبل" class="item-img"><div class="item-title">اسبريسو دبل</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="قهوة جكليتيه" class="item-img"><div class="item-title">قهوة جكليتيه</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=150&q=80" alt="اميركانو" class="item-img"><div class="item-title">اميركانو</div></div><div class="price-badge">3,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="قهوة بالبندق" class="item-img"><div class="item-title">قهوة بالبندق</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=150&q=80" alt="موكا دارك" class="item-img"><div class="item-title">موكا دارك</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=150&q=80" alt="موكا وايت" class="item-img"><div class="item-title">موكا وايت</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=150&q=80" alt="گوگونات موكا" class="item-img"><div class="item-title">گوگونات موكا</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="بوب كورن وايت" class="item-img"><div class="item-title">بوب كورن وايت</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="كبتشينو" class="item-img"><div class="item-title">كبتشينو</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="لاتيه" class="item-img"><div class="item-title">لاتيه</div></div><div class="price-badge">3,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="لاتيه فانيلا" class="item-img"><div class="item-title">لاتيه فانيلا</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="لاتيه كراميل" class="item-img"><div class="item-title">لاتيه كراميل</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="لاتيه سبانش" class="item-img"><div class="item-title">لاتيه سبانش</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=150&q=80" alt="كراميل ميكاتو" class="item-img"><div class="item-title">كراميل ميكاتو</div></div><div class="price-badge">4,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 2. مشروبات ساخنه -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🫖</span>
+                    <span>مشروبات ساخنه</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي" class="item-img"><div class="item-title">شاي</div></div><div class="price-badge">2,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي نعناع" class="item-img"><div class="item-title">شاي نعناع</div></div><div class="price-badge">2,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي ليمون" class="item-img"><div class="item-title">شاي ليمون</div></div><div class="price-badge">2,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="هوت چوكليت" class="item-img"><div class="item-title">هوت چوكليت</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="هوت چوكليت مملح" class="item-img"><div class="item-title">هوت چوكليت مملح</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="هوت لوتس" class="item-img"><div class="item-title">هوت لوتس</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="هوت كراميل سولت" class="item-img"><div class="item-title">هوت كراميل سولت</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="سبايس وايت" class="item-img"><div class="item-title">سبايس وايت</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="سحلب" class="item-img"><div class="item-title">سحلب</div></div><div class="price-badge">4,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 3. القهوة المثلجه -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🧊</span>
+                    <span>القهوة المثلجه</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس لاتيه" class="item-img"><div class="item-title">ايس لاتيه</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس لاتيه كراميل" class="item-img"><div class="item-title">ايس لاتيه كراميل</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس فانيلا لاتيه" class="item-img"><div class="item-title">ايس فانيلا لاتيه</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس ستروبري لاتيه" class="item-img"><div class="item-title">ايس ستروبري لاتيه</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس كوكونات موكا" class="item-img"><div class="item-title">ايس كوكونات موكا</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس بستاشيو لاتيه" class="item-img"><div class="item-title">ايس بستاشيو لاتيه</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس وايت موكا" class="item-img"><div class="item-title">ايس وايت موكا</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس لوتس لاتيه" class="item-img"><div class="item-title">ايس لوتس لاتيه</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس سبانش لاتيه" class="item-img"><div class="item-title">ايس سبانش لاتيه</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس بوب كورن" class="item-img"><div class="item-title">ايس بوب كورن</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&w=150&q=80" alt="ايس امريكانو" class="item-img"><div class="item-title">ايس امريكانو</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس شيكن" class="item-img"><div class="item-title">ايس شيكن</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=150&q=80" alt="ايس موكا" class="item-img"><div class="item-title">ايس موكا</div></div><div class="price-badge">4,500 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 4. الموهيتو -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🍹</span>
+                    <span>الموهيتو</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="ليمون نعناع" class="item-img"><div class="item-title">ليمون نعناع</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="كرنادين" class="item-img"><div class="item-title">كرنادين</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="منگه وفانيل" class="item-img"><div class="item-title">منگه وفانيل</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="رگي وفراوله" class="item-img"><div class="item-title">رگي وفراوله</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="بلوبيري" class="item-img"><div class="item-title">بلوبيري</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="روزنت" class="item-img"><div class="item-title">روزنت</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="بيريز" class="item-img"><div class="item-title">بيريز</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="باشن بيريز" class="item-img"><div class="item-title">باشن بيريز</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="ببل ريد" class="item-img"><div class="item-title">ببل ريد</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="بلو سكاي" class="item-img"><div class="item-title">بلو سكاي</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="فراوله" class="item-img"><div class="item-title">فراوله</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="تفاح" class="item-img"><div class="item-title">تفاح</div></div><div class="price-badge">4,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 5. الميلك شيك -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🥤</span>
+                    <span>الميلك شيك</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك لوتس" class="item-img"><div class="item-title">ميلك شيك لوتس</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك بستاشيو" class="item-img"><div class="item-title">ميلك شيك بستاشيو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك فراوله" class="item-img"><div class="item-title">ميلك شيك فراوله</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك اوريو" class="item-img"><div class="item-title">ميلك شيك اوريو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك نوتيلا" class="item-img"><div class="item-title">ميلك شيك نوتيلا</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك راشي" class="item-img"><div class="item-title">ميلك شيك راشي</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="ميلك شيك بنت باتر" class="item-img"><div class="item-title">ميلك شيك بنت باتر</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 6. السموذي -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🥭</span>
+                    <span>السموذي</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي فراوله" class="item-img"><div class="item-title">سموذي فراوله</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي منگه" class="item-img"><div class="item-title">سموذي منگه</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي بلوبيري" class="item-img"><div class="item-title">سموذي بلوبيري</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي فواكه استوائيه" class="item-img"><div class="item-title">سموذي فواكه استوائيه</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي اورنج بريز" class="item-img"><div class="item-title">سموذي اورنج بريز</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي كرين مينت" class="item-img"><div class="item-title">سموذي كرين مينت</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي مكس بيريز" class="item-img"><div class="item-title">سموذي مكس بيريز</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي دراكون" class="item-img"><div class="item-title">سموذي دراكون</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=150&q=80" alt="سموذي بلو" class="item-img"><div class="item-title">سموذي بلو</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 7. العصائر -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🍊</span>
+                    <span>العصائر</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="برتقال" class="item-img"><div class="item-title">برتقال</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="ليمون" class="item-img"><div class="item-title">ليمون</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="منگه" class="item-img"><div class="item-title">منگه</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="موز" class="item-img"><div class="item-title">موز</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="بطيخ" class="item-img"><div class="item-title">بطيخ</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="فراوله" class="item-img"><div class="item-title">فراوله</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="اناناس" class="item-img"><div class="item-title">اناناس</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="ليموناضه" class="item-img"><div class="item-title">ليموناضه</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="ليمون نعناع" class="item-img"><div class="item-title">ليمون نعناع</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=150&q=80" alt="موز فراوله" class="item-img"><div class="item-title">موز فراوله</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 8. المشروبات المميزة -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>✨</span>
+                    <span>المشروبات المميزة</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=150&q=80" alt="گرگديه بالفانيلا" class="item-img"><div class="item-title">گرگديه بالفانيلا</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=150&q=80" alt="ايس چوكلت ستروبري" class="item-img"><div class="item-title">ايس چوكلت ستروبري</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=150&q=80" alt="ايس دارك شيكن" class="item-img"><div class="item-title">ايس دارك شيكن</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=150&q=80" alt="اورنج گرگديه" class="item-img"><div class="item-title">اورنج گرگديه</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 9. الشاي المثلج -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🍑</span>
+                    <span>الشاي المثلج</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=150&q=80" alt="شاي خوخ مثلج" class="item-img"><div class="item-title">شاي خوخ مثلج</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=150&q=80" alt="شاي فراوله مثلج" class="item-img"><div class="item-title">شاي فراوله مثلج</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=150&q=80" alt="شاي توت وفانيلا مثلج" class="item-img"><div class="item-title">شاي توت وفانيلا مثلج</div></div><div class="price-badge">4,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 10. مشروبات طاقه -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>⚡</span>
+                    <span>مشروبات طاقه</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=150&q=80" alt="مكسيكي تايگر" class="item-img"><div class="item-title">مكسيكي تايگر</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=150&q=80" alt="مكسيكي ريدبول" class="item-img"><div class="item-title">مكسيكي ريدبول</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=150&q=80" alt="ريدبول فراوله" class="item-img"><div class="item-title">ريدبول فراوله</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=150&q=80" alt="ريدبول بلوسكاي" class="item-img"><div class="item-title">ريدبول بلوسكاي</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=150&q=80" alt="ريدبول حمضيات" class="item-img"><div class="item-title">ريدبول حمضيات</div></div><div class="price-badge">6,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 11. الفرايبيه -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>❄️</span>
+                    <span>الفرايبيه</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="كراميل فراب" class="item-img"><div class="item-title">كراميل فراب</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="راشي فراب" class="item-img"><div class="item-title">راشي فراب</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="كلاسك فراب" class="item-img"><div class="item-title">كلاسك فراب</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="بستاشيو فراب" class="item-img"><div class="item-title">بستاشيو فراب</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="لوتس فراب" class="item-img"><div class="item-title">لوتس فراب</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=150&q=80" alt="موكا فراب" class="item-img"><div class="item-title">موكا فراب</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 12. الاطباق -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🍽️</span>
+                    <span>الاطباق</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=150&q=80" alt="طبق فواكه صغير" class="item-img"><div class="item-title">طبق فواكه صغير</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=150&q=80" alt="طبق فواكه كبير" class="item-img"><div class="item-title">طبق فواكه كبير</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1536591375315-1b836881d24a?auto=format&fit=crop&w=150&q=80" alt="طبق كرزات" class="item-img"><div class="item-title">طبق كرزات</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1536591375315-1b836881d24a?auto=format&fit=crop&w=150&q=80" alt="طبق كرزات كبير" class="item-img"><div class="item-title">طبق كرزات كبير</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=150&q=80" alt="قدح ايس كريم" class="item-img"><div class="item-title">قدح ايس كريم</div></div><div class="price-badge">3,500 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 13. وافل -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🧇</span>
+                    <span>وافل</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="فروتيس" class="item-img"><div class="item-title">فروتيس</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="نوتيلا" class="item-img"><div class="item-title">نوتيلا</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="كرانشي" class="item-img"><div class="item-title">كرانشي</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="اوريو" class="item-img"><div class="item-title">اوريو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="كندر" class="item-img"><div class="item-title">كندر</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="لوتس" class="item-img"><div class="item-title">لوتس</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=150&q=80" alt="بستاشيو" class="item-img"><div class="item-title">بستاشيو</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 14. بان كيك -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🥞</span>
+                    <span>بان كيك</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="فروتيس" class="item-img"><div class="item-title">فروتيس</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="كرانشي" class="item-img"><div class="item-title">كرانشي</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="اوريو" class="item-img"><div class="item-title">اوريو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="كندر" class="item-img"><div class="item-title">كندر</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="لوتس" class="item-img"><div class="item-title">لوتس</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="بستاشيو" class="item-img"><div class="item-title">بستاشيو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="نوتيلا" class="item-img"><div class="item-title">نوتيلا</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="برغر" class="item-img"><div class="item-title">برغر</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=150&q=80" alt="بينت باتربنانا" class="item-img"><div class="item-title">بينت باتربنانا</div></div><div class="price-badge">5,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 15. الكريب -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>🥐</span>
+                    <span>الكريب</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="فروتيس" class="item-img"><div class="item-title">فروتيس</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="نوتيلا" class="item-img"><div class="item-title">نوتيلا</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="مارشملو" class="item-img"><div class="item-title">مارشملو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="رول براوني" class="item-img"><div class="item-title">رول براوني</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="باوج" class="item-img"><div class="item-title">باوج</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="كرانشي" class="item-img"><div class="item-title">كرانشي</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="اوريو" class="item-img"><div class="item-title">اوريو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="كندر" class="item-img"><div class="item-title">كندر</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="لوتس" class="item-img"><div class="item-title">لوتس</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="بستاشيو" class="item-img"><div class="item-title">بستاشيو</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="فوتوشيني" class="item-img"><div class="item-title">فوتوشيني</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="بينت باتر" class="item-img"><div class="item-title">بينت باتر</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=150&q=80" alt="رول بنانا" class="item-img"><div class="item-title">رول بنانا</div></div><div class="price-badge">6,000 د.ع</div></div>
+            </div>
+        </div>
+
+        <!-- 16. الاراكيل -->
+        <div class="category-item">
+            <button class="category-btn" onclick="toggleAccordion(this)">
+                <div class="category-title-group">
+                    <span>💨</span>
+                    <span>الاراكيل</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="items-list">
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="علك ونعناع" class="item-img"><div class="item-title">علك ونعناع</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="علك وفانيلا" class="item-img"><div class="item-title">علك وفانيلا</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="علك لبناني" class="item-img"><div class="item-title">علك لبناني</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="علك شمام" class="item-img"><div class="item-title">علك شمام</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="ليمون نعناع" class="item-img"><div class="item-title">ليمون نعناع</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="سبيشيل نبض" class="item-img"><div class="item-title">سبيشيل نبض</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="مكس حمضيات" class="item-img"><div class="item-title">مكس حمضيات</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="فواكه استوائيه" class="item-img"><div class="item-title">فواكه استوائيه</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="انكليزي" class="item-img"><div class="item-title">انكليزي</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="تفاحتين" class="item-img"><div class="item-title">تفاحتين</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="ازمير" class="item-img"><div class="item-title">ازمير</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="عنب" class="item-img"><div class="item-title">عنب</div></div><div class="price-badge">8,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="أناناس طبيعي" class="item-img"><div class="item-title">أناناس طبيعي</div></div><div class="price-badge">13,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="سندي طبيعي" class="item-img"><div class="item-title">سندي طبيعي</div></div><div class="price-badge">11,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="اكسترا فنجان حجري" class="item-img"><div class="item-title">اكسترا فنجان حجري</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="اكسترا فنجان طبيعي" class="item-img"><div class="item-title">اكسترا فنجان طبيعي</div></div><div class="price-badge">6,000 د.ع</div></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Sticky Delivery Footer -->
+    <div class="footer-delivery">
+        <a href="tel:07800000000" class="delivery-btn">
+            <span>📞</span>
+            <span>اتصال للطلب</span>
+        </a>
+        <a href="https://wa.me/9647800000000" class="delivery-btn whatsapp-btn">
+            <span>💬</span>
+            <span>واتساب</span>
+        </a>
+    </div>
+
+    <!-- Accordion JavaScript -->
+    <script>
+        function toggleAccordion(button) {
+            const currentItem = button.parentElement;
+            const currentList = currentItem.querySelector('.items-list');
+            const isActive = currentItem.classList.contains('active');
+
+            // Close all items (Single accordion mode)
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+                const list = item.querySelector('.items-list');
+                list.style.maxHeight = null;
+            });
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                currentItem.classList.add('active');
+                currentList.style.maxHeight = currentList.scrollHeight + "px";
+            }
+        }
+    </script>
+</body>
+</html>
