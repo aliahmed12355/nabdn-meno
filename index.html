@@ -12,12 +12,12 @@
     
     <style>
         :root {
-            --bg-dark: #0a0f12;
-            --card-bg: #131b1e;
+            --bg-dark: hsl(0, 0%, 7%);
+            --card-bg: #0c0c0c;
             --accent-teal: #00b4d8;
             --text-main: #f0f4f5;
-            --text-muted: #8d9d9f;
-            --border-color: #1f2b30;
+            --text-muted: #9f978d;
+            --border-color: #b6b7b8;
         }
 
         * {
@@ -274,7 +274,7 @@
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي" class="item-img"><div class="item-title">شاي</div></div><div class="price-badge">2,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي" class="item-img"><div class="item-title">شاي</div></div><div class="price-badge">1,000 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي نعناع" class="item-img"><div class="item-title">شاي نعناع</div></div><div class="price-badge">2,500 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="شاي ليمون" class="item-img"><div class="item-title">شاي ليمون</div></div><div class="price-badge">2,500 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=150&q=80" alt="هوت چوكليت" class="item-img"><div class="item-title">هوت چوكليت</div></div><div class="price-badge">4,000 د.ع</div></div>
@@ -586,176 +586,24 @@
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=150&q=80" alt="اكسترا فنجان طبيعي" class="item-img"><div class="item-title">اكسترا فنجان طبيعي</div></div><div class="price-badge">6,000 د.ع</div></div>
             </div>
         </div>
-        <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة الطعام الكاملة | Menu</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-dark: #0a0f12;
-            --card-bg: #131b1e;
-            --accent-teal: #00b4d8;
-            --text-main: #f0f4f5;
-            --text-muted: #8d9d9f;
-            --border-color: #1f2b30;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            padding: 20px 0 50px;
-            direction: rtl;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-
-        /* Accordion Category Item */
-        .category-item {
-            margin-bottom: 12px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-        }
-
-        .category-btn {
-            width: 100%;
-            padding: 16px 20px;
-            background: var(--card-bg);
-            color: var(--text-main);
-            border: none;
-            outline: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .category-btn:active {
-            background-color: rgba(0, 180, 216, 0.08);
-        }
-
-        .category-title-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .arrow {
-            color: var(--accent-teal);
-            font-size: 0.85rem;
-            transition: transform 0.3s ease;
-        }
-
-        .category-item.active .arrow {
-            transform: rotate(180deg);
-        }
-
-        /* Accordion Content */
-        .items-list {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease-out;
-            padding: 0 15px;
-        }
-
-        .category-item.active .items-list {
-            padding: 10px 15px 15px;
-        }
-
-        /* Item Card */
-        .item-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px dashed var(--border-color);
-            gap: 12px;
-        }
-
-        .item-card:last-child {
-            border-bottom: none;
-        }
-
-        .item-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .item-img {
-            width: 55px;
-            height: 55px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 1px solid var(--border-color);
-            background: #1a2428;
-            flex-shrink: 0;
-        }
-
-        .item-title {
-            font-size: 0.98rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        /* Price Badge */
-        .price-badge {
-            background: rgba(0, 180, 216, 0.12);
-            border: 1px solid rgba(0, 180, 216, 0.3);
-            color: var(--accent-teal);
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            border-radius: 20px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-    </style>
-</head>
-<body>
-
-    <main class="container">
+        
 
         <!-- 1. برغر (BURGER) -->
         <div class="category-item">
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🍔</span>
-                    <span>1. برغر (BURGER)</span>
+                    <span> برغر (BURGER)</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر كلاسيك" class="item-img"><div class="item-title">ساندويش برغر كلاسيك</div></div><div class="price-badge">4,000 / 4,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر بالجبن" class="item-img"><div class="item-title">ساندويش برغر بالجبن</div></div><div class="price-badge">4,500 / 5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر تكساس" class="item-img"><div class="item-title">ساندويش برغر تكساس</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر لحم بالأنانياس" class="item-img"><div class="item-title">ساندويش برغر لحم بالأنانياس</div></div><div class="price-badge">5,000 / 6,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر دبل" class="item-img"><div class="item-title">ساندويش برغر دبل</div></div><div class="price-badge">6,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر دجاج" class="item-img"><div class="item-title">ساندويش برغر دجاج</div></div><div class="price-badge">4,000 / 5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر كلاسيك" class="item-img"><div class="item-title">ساندويش برغر كلاسيك</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر بالجبن" class="item-img"><div class="item-title">ساندويش برغر بالجبن</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر تكساس" class="item-img"><div class="item-title">ساندويش برغر تكساس</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر لحم بالأنانياس" class="item-img"><div class="item-title">ساندويش برغر لحم بانية</div></div><div class="price-badge">5,500  د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر دبل" class="item-img"><div class="item-title">ساندويش برغر دبل</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=150&q=80" alt="ساندويش برغر دجاج" class="item-img"><div class="item-title">ساندويش برغر دجاج</div></div><div class="price-badge">4,500 د.ع</div></div>
             </div>
         </div>
 
@@ -764,20 +612,20 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🥪</span>
-                    <span>2. المأكولات السريعة والساندويشات</span>
+                    <span> المأكولات السريعة والساندويشات</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش سكالموب دجاج" class="item-img"><div class="item-title">ساندويش سكالموب دجاج</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش سكالموب دجاج" class="item-img"><div class="item-title">ساندويش سكالموب دجاج</div></div><div class="price-badge">4,500 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش فاهيتا دجاج" class="item-img"><div class="item-title">ساندويش فاهيتا دجاج</div></div><div class="price-badge">4,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش زنجر" class="item-img"><div class="item-title">ساندويش زنجر</div></div><div class="price-badge">4,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش فلت" class="item-img"><div class="item-title">ساندويش فلت</div></div><div class="price-badge">4,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي مدخن" class="item-img"><div class="item-title">ساندويش كرسبي مدخن</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي فرايز" class="item-img"><div class="item-title">ساندويش كرسبي فرايز</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي سبيسي" class="item-img"><div class="item-title">ساندويش كرسبي سبيسي</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي مشروم" class="item-img"><div class="item-title">ساندويش كرسبي مشروم</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش تويستر" class="item-img"><div class="item-title">ساندويش تويستر</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش زنجر" class="item-img"><div class="item-title">ساندويش زنجر</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش فلت" class="item-img"><div class="item-title">ساندويش فلر</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي مدخن" class="item-img"><div class="item-title">ساندويش كرسبي مدخن</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي فرايز" class="item-img"><div class="item-title">ساندويش كرسبي فرايز</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي سبيسي" class="item-img"><div class="item-title">ساندويش كرسبي سبيسي</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="ساندويش كرسبي مشروم" class="item-img"><div class="item-title">ساندويش كرسبي مشروم</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=150&q=80" alt="ساندويش تويستر" class="item-img"><div class="item-title">ساندويش تويستر</div></div><div class="price-badge">5,500 د.ع</div></div>
             </div>
         </div>
 
@@ -786,18 +634,18 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🍛</span>
-                    <span>3. ريزو (REZO)</span>
+                    <span> ريزو (REZO)</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو كلاسيك" class="item-img"><div class="item-title">ريزو كلاسيك</div></div><div class="price-badge">4,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو مدخن" class="item-img"><div class="item-title">ريزو مدخن</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو سبيسي" class="item-img"><div class="item-title">ريزو سبيسي</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو اعشاب" class="item-img"><div class="item-title">ريزو اعشاب</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو بالجبن السائل" class="item-img"><div class="item-title">ريزو بالجبن السائل</div></div><div class="price-badge">6,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو شاورما لحم" class="item-img"><div class="item-title">ريزو شاورما لحم</div></div><div class="price-badge">6,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو شاورما دجاج" class="item-img"><div class="item-title">ريزو شاورما دجاج</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو كلاسيك" class="item-img"><div class="item-title">ريزو كلاسيك</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو مدخن" class="item-img"><div class="item-title">ريزو مدخن</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو سبيسي" class="item-img"><div class="item-title">ريزو سبيسي</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو اعشاب" class="item-img"><div class="item-title">ريزو اعشاب</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو بالجبن السائل" class="item-img"><div class="item-title">ريزو بالجبن السائل</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو شاورما لحم" class="item-img"><div class="item-title">ريزو شاورما لحم</div></div><div class="price-badge">7,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=150&q=80" alt="ريزو شاورما دجاج" class="item-img"><div class="item-title">ريزو شاورما دجاج</div></div><div class="price-badge">6,500 د.ع</div></div>
             </div>
         </div>
 
@@ -806,19 +654,19 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🍕</span>
-                    <span>4. البيتزا والمعجنات (صغير / كبير)</span>
+                    <span> البيتزا والمعجنات (صغير / كبير)</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" alt="بيتزا شاورما لحم" class="item-img"><div class="item-title">بيتزا شاورما لحم</div></div><div class="price-badge">8,000 / 11,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=150&q=80" alt="بيتزا شاورما دجاج" class="item-img"><div class="item-title">بيتزا شاورما دجاج</div></div><div class="price-badge">7,000 / 10,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" alt="بيتزا الفصول الاربعه" class="item-img"><div class="item-title">بيتزا الفصول الاربعه</div></div><div class="price-badge">7,000 / 10,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=150&q=80" alt="بيتزا خضار" class="item-img"><div class="item-title">بيتزا خضار</div></div><div class="price-badge">5,000 / 8,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=150&q=80" alt="بيتزا مارغريتا" class="item-img"><div class="item-title">بيتزا مارغريتا</div></div><div class="price-badge">5,000 / 8,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=150&q=80" alt="بيتزا ببروني" class="item-img"><div class="item-title">بيتزا ببروني</div></div><div class="price-badge">6,000 / 9,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=150&q=80" alt="فطائر لحم" class="item-img"><div class="item-title">فطائر لحم</div></div><div class="price-badge">7,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=150&q=80" alt="فطائر دجاج" class="item-img"><div class="item-title">فطائر دجاج</div></div><div class="price-badge">6,000 / 6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" alt="بيتزا شاورما لحم" class="item-img"><div class="item-title">بيتزا شاورما لحم</div></div><div class="price-badge">8,000 / 12,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=150&q=80" alt="بيتزا شاورما دجاج" class="item-img"><div class="item-title">بيتزا شاورما دجاج</div></div><div class="price-badge">8,000 / 10,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" alt="بيتزا الفصول الاربعه" class="item-img"><div class="item-title">بيتزا الفصول الاربعه</div></div><div class="price-badge">8,000 / 11,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=150&q=80" alt="بيتزا خضار" class="item-img"><div class="item-title">بيتزا خضار</div></div><div class="price-badge">7,000 / 9,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=150&q=80" alt="بيتزا مارغريتا" class="item-img"><div class="item-title">بيتزا مارغريتا</div></div><div class="price-badge">7,000 / 9,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=150&q=80" alt="بيتزا ببروني" class="item-img"><div class="item-title">بيتزا ببروني</div></div><div class="price-badge">7,000 / 8,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=150&q=80" alt="فطائر لحم" class="item-img"><div class="item-title">فطائر لحم</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=150&q=80" alt="فطائر دجاج" class="item-img"><div class="item-title">فطائر دجاج</div></div><div class="price-badge">6,500 د.ع</div></div>
             </div>
         </div>
 
@@ -827,17 +675,17 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🌯</span>
-                    <span>5. الشاورما (ساندويش / صاج)</span>
+                    <span> الشاورما (ساندويش / صاج)</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=150&q=80" alt="ساندويش شاورما لحم" class="item-img"><div class="item-title">ساندويش شاورما لحم (صمون عراقي أو فرنسي)</div></div><div class="price-badge">4,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=150&q=80" alt="ساندويش شاورما دجاج" class="item-img"><div class="item-title">ساندويش شاورما دجاج (صمون عراقي أو فرنسي)</div></div><div class="price-badge">3,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج شاورما لحم" class="item-img"><div class="item-title">صاج شاورما لحم</div></div><div class="price-badge">5,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج شاورما دجاج" class="item-img"><div class="item-title">صاج شاورما دجاج</div></div><div class="price-badge">4,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج ايطالي لحم" class="item-img"><div class="item-title">صاج ايطالي لحم</div></div><div class="price-badge">7,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج ايطالي دجاج" class="item-img"><div class="item-title">صاج ايطالي دجاج</div></div><div class="price-badge">6,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=150&q=80" alt="ساندويش شاورما لحم" class="item-img"><div class="item-title">ساندويش شاورما لحم (صمون عراقي أو فرنسي)</div></div><div class="price-badge">5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=150&q=80" alt="ساندويش شاورما دجاج" class="item-img"><div class="item-title">ساندويش شاورما دجاج (صمون عراقي أو فرنسي)</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج شاورما لحم" class="item-img"><div class="item-title">صاج شاورما لحم</div></div><div class="price-badge">5,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج شاورما دجاج" class="item-img"><div class="item-title">صاج شاورما دجاج</div></div><div class="price-badge">4,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج ايطالي لحم" class="item-img"><div class="item-title">صاج ايطالي لحم</div></div><div class="price-badge">7,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="صاج ايطالي دجاج" class="item-img"><div class="item-title">صاج ايطالي دجاج</div></div><div class="price-badge">6,500 د.ع</div></div>
             </div>
         </div>
 
@@ -846,17 +694,17 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>⚖️</span>
-                    <span>6. شاورما وزن</span>
+                    <span> شاورما وزن</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="ربع كيلو شاورما لحم" class="item-img"><div class="item-title">ربع كيلو شاورما لحم</div></div><div class="price-badge">12,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="ربع كيلو شاورما دجاج" class="item-img"><div class="item-title">ربع كيلو شاورما دجاج</div></div><div class="price-badge">7,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="نصف كيلو شاورما لحم" class="item-img"><div class="item-title">نصف كيلو شاورما لحم</div></div><div class="price-badge">22,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="نصف كيلو شاورما دجاج" class="item-img"><div class="item-title">نصف كيلو شاورما دجاج</div></div><div class="price-badge">14,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="كيلو شاورما لحم" class="item-img"><div class="item-title">كيلو شاورما لحم</div></div><div class="price-badge">40,000 / 42,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="كيلو شاورما دجاج" class="item-img"><div class="item-title">كيلو شاورما دجاج</div></div><div class="price-badge">25,000 / 28,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="ربع كيلو شاورما لحم" class="item-img"><div class="item-title">ربع كيلو شاورما لحم</div></div><div class="price-badge">13,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="ربع كيلو شاورما دجاج" class="item-img"><div class="item-title">ربع كيلو شاورما دجاج</div></div><div class="price-badge">8,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="نصف كيلو شاورما لحم" class="item-img"><div class="item-title">نصف كيلو شاورما لحم</div></div><div class="price-badge">25,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="نصف كيلو شاورما دجاج" class="item-img"><div class="item-title">نصف كيلو شاورما دجاج</div></div><div class="price-badge">15,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="كيلو شاورما لحم" class="item-img"><div class="item-title">كيلو شاورما لحم</div></div><div class="price-badge">48,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" alt="كيلو شاورما دجاج" class="item-img"><div class="item-title">كيلو شاورما دجاج</div></div><div class="price-badge">30,000 د.ع</div></div>
             </div>
         </div>
 
@@ -865,19 +713,19 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🍗</span>
-                    <span>7. الكنتاكي</span>
+                    <span> الكنتاكي</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة ملي (2 قطع)" class="item-img"><div class="item-title">وجبة ميني (2 قطع)</div></div><div class="price-badge">6,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة لايت (3 قطع)" class="item-img"><div class="item-title">وجبة لايت (3 قطع)</div></div><div class="price-badge">8,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة اكسترا (4 قطع)" class="item-img"><div class="item-title">وجبة اكسترا (4 قطع)</div></div><div class="price-badge">10,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة دبل (5 قطع)" class="item-img"><div class="item-title">وجبة دبل (5 قطع)</div></div><div class="price-badge">12,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة جامبو (8 قطع)" class="item-img"><div class="item-title">وجبة جامبو (8 قطع)</div></div><div class="price-badge">16,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة سوبر (10 قطع)" class="item-img"><div class="item-title">وجبة سوبر (10 قطع)</div></div><div class="price-badge">19,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة فاميلي (15 قطعة)" class="item-img"><div class="item-title">وجبة فاميلي (15 قطعة)</div></div><div class="price-badge">23,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة طفل (1 قطعة)" class="item-img"><div class="item-title">وجبة طفل (1 قطعة)</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة ملي (2 قطع)" class="item-img"><div class="item-title">وجبة ميني (2 قطع)</div></div><div class="price-badge">6,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة لايت (3 قطع)" class="item-img"><div class="item-title">وجبة لايت (3 قطع)</div></div><div class="price-badge">8,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة اكسترا (4 قطع)" class="item-img"><div class="item-title">وجبة اكسترا (4 قطع)</div></div><div class="price-badge">11,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة دبل (5 قطع)" class="item-img"><div class="item-title">وجبة دبل (5 قطع)</div></div><div class="price-badge">13,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة جامبو (8 قطع)" class="item-img"><div class="item-title">وجبة جامبو (8 قطع)</div></div><div class="price-badge">19,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة سوبر (10 قطع)" class="item-img"><div class="item-title">وجبة سوبر (10 قطع)</div></div><div class="price-badge">22,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة فاميلي (15 قطعة)" class="item-img"><div class="item-title">وجبة فاميلي (15 قطعة)</div></div><div class="price-badge">34,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80" alt="وجبة طفل (1 قطعة)" class="item-img"><div class="item-title">وجبة طفل (1 قطعة)</div></div><div class="price-badge">4,500 د.ع</div></div>
             </div>
         </div>
 
@@ -886,13 +734,13 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🍟</span>
-                    <span>8. السترپس</span>
+                    <span> السترپس</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=150&q=80" alt="وجبة ستربس مقرمش 4 قطع" class="item-img"><div class="item-title">وجبة ستربس مقرمش 4 قطع</div></div><div class="price-badge">7,000 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=150&q=80" alt="وجبة ستربس مقرمش 8 قطع" class="item-img"><div class="item-title">وجبة ستربس مقرمش 8 قطع</div></div><div class="price-badge">12,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=150&q=80" alt="وجبة ستربس مقرمش 4 قطع" class="item-img"><div class="item-title">وجبة ستربس مقرمش 4 قطع</div></div><div class="price-badge">7,500 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=150&q=80" alt="وجبة ستربس مقرمش 8 قطع" class="item-img"><div class="item-title">وجبة ستربس مقرمش 8 قطع</div></div><div class="price-badge">12,500 د.ع</div></div>
             </div>
         </div>
 
@@ -901,13 +749,13 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🥔</span>
-                    <span>9. الفنكر</span>
+                    <span> الفنكر</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=150&q=80" alt="قدح فنكر" class="item-img"><div class="item-title">قدح فنكر</div></div><div class="price-badge">1,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=150&q=80" alt="صحن فنكر بالصلصة" class="item-img"><div class="item-title">صحن فنكر بالصلصة</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=150&q=80" alt="صحن فنكر بالصلصة" class="item-img"><div class="item-title">صحن فنكر بالصلصة</div></div><div class="price-badge">3,500 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=150&q=80" alt="صحن فنكر بالجبن السائل" class="item-img"><div class="item-title">صحن فنكر بالجبن السائل</div></div><div class="price-badge">4,000 د.ع</div></div>
             </div>
         </div>
@@ -917,14 +765,14 @@
             <button class="category-btn" onclick="toggleAccordion(this)">
                 <div class="category-title-group">
                     <span>🥗</span>
-                    <span>10. المقبلات والمشروبات</span>
+                    <span> المقبلات والمشروبات</span>
                 </div>
                 <span class="arrow">▼</span>
             </button>
             <div class="items-list">
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="مقبلات حجم صغير" class="item-img"><div class="item-title">مقبلات حجم صغير</div></div><div class="price-badge">2,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="مقبلات حجم وسط" class="item-img"><div class="item-title">مقبلات حجم وسط</div></div><div class="price-badge">3,500 د.ع</div></div>
-                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="مقبلات حجم كبير" class="item-img"><div class="item-title">مقبلات حجم كبير</div></div><div class="price-badge">4,500 / 5,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="مقبلات حجم صغير" class="item-img"><div class="item-title">مقبلات حجم صغير</div></div><div class="price-badge">3,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="مقبلات حجم وسط" class="item-img"><div class="item-title">مقبلات حجم وسط</div></div><div class="price-badge">4,000 د.ع</div></div>
+                <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="مقبلات حجم كبير" class="item-img"><div class="item-title">مقبلات حجم كبير</div></div><div class="price-badge">6,000 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=150&q=80" alt="كولا" class="item-img"><div class="item-title">كولا</div></div><div class="price-badge">1,000 د.ع</div></div>
                 <div class="item-card"><div class="item-left"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=150&q=80" alt="ماء" class="item-img"><div class="item-title">ماء</div></div><div class="price-badge">500 د.ع</div></div>
             </div>
